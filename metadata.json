@@ -1,0 +1,6 @@
+{
+  "name": "Contraceptive Demand Forecasting for Health Supply Chains",
+  "description": "Interactive public health supply chain dashboard for contraceptive demand forecasting, DAX KPI measures, regional variance analysis, stockout prevention, and inventory optimization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
