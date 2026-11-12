@@ -19,8 +19,10 @@ import { ExportModal } from './components/Views/ExportModal';
 import TeamSection from './components/TeamSection';
 import { Flame, TrendingUp } from 'lucide-react';
 
-// Address of the Nova backend API
-const API_BASE = 'http://localhost:3001';
+// On a laptop (localhost) the API runs on port 3001.
+// Once the site is online, the API lives on the same address, so no prefix is needed.
+const IS_LOCAL = window.location.hostname === 'localhost';
+const API_BASE = IS_LOCAL ? 'http://localhost:3001' : '';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -247,8 +249,16 @@ export default function App() {
         <div className="max-w-md text-center space-y-3">
           <div className="text-lg font-bold text-red-400">Could not load data</div>
           <div className="text-sm text-slate-300">
-            {loadError}. Make sure the backend is running with <code>npm run server</code> and the
-            database is seeded with <code>npm run seed</code>.
+            {IS_LOCAL ? (
+              <>
+                {loadError}. Make sure the backend is running with <code>npm run server</code> and the
+                database is seeded with <code>npm run seed</code>.
+              </>
+            ) : (
+              <>
+                {loadError}. The server may be waking up. Please wait a few seconds and try again.
+              </>
+            )}
           </div>
           <button
             onClick={() => window.location.reload()}
